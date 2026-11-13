@@ -1,0 +1,22 @@
+@if (contributedNode) {
+    <div class="inline-component">
+        <ur-radio-group
+            [value]="getGripperToggle()"
+            [labelPosition]="'after'"
+            [buttonPosition]="'inline'"
+            (radioChange)="setGripperToggle($event.value)"
+        >
+            <ur-radio-button [value]="'true'" [attr.data-testid]="'gripper-distance-open'">
+                {{ 'presenter.gripdistance.label.open_to_distance' | translate }}
+                {{ getDisplayValue(contributedNode?.parameters?.openDistance) }}
+            </ur-radio-button>
+            <ur-radio-button [value]="'false'" [attr.data-testid]="'gripper-distance-close'">
+                {{ 'presenter.gripdistance.label.close_to_distance' | translate }}
+                {{ getDisplayValue(contributedNode?.parameters?.closedDistance) }}
+            </ur-radio-button>
+        </ur-radio-group>
+        @if (!hasValidRange) {
+            <ur-label class="error-label" [label]="'presenter.gripdistance.validation.invalid_range_message' | translate" size="small"></ur-label>
+        }
+    </div>
+}
